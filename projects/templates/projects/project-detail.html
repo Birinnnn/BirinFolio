@@ -48,9 +48,9 @@
                 {% csrf_token %}
                 <input type="hidden" value="{{ project.id }}" name="like">
                 {% if liked %}
-                <button><img src="{% static '/images/like.png' %}" alt="Like"></button>
+                <button><img src="{% static 'images/like.png' %}" alt="Like"></button>
                 {% else %}
-                <button><img src="{% static '/images/dislike.png' %}" alt="Dislike"></button>
+                <button><img src="{% static 'images/dislike.png' %}" alt="Dislike"></button>
                 {% endif %}
             </form>
             <label>{{project.likes.count}}</label>
