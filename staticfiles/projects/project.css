@@ -1,0 +1,45 @@
+.project {
+    list-style: none;
+    margin-bottom: 2rem;
+}
+
+.project a {
+    text-decoration: none;
+    color: #333;
+}
+
+.project-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.project-details {
+    margin-top: 1rem;
+}
+
+.project-details h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.project-details p {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.project-skills {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.project-skills li {
+    display: inline-block;
+    background-color: #f2f2f2;
+    color: #333;
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+    margin-right: 0.5rem;
+    border-radius: 5px;
+}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title%}
+    Education
+{% endblock %}
+
+{% block  css_files %}
+    <link rel="stylesheet" href="{% static "education/education.css" %}">
+{% endblock  %}
+
+
+{% block content %}
+    <h1>My Education</h1>
+    <div class="education-section">
+        {% for education in educations %}
+        <div class="education-entry">
+            <h2 class="institution">{{ education.instution }}</h2>
+            <p class="degree">{{ education.degree }}</p>
+            <p class="dates">{{ education.start_date|date:"m/Y" }} - 
+                {% if education.anticipated_graduation %}
+                    {{ education.end_date|date:"Y" }}
+                {% else %}
+                    {{ education.end_date|date:"m/Y" }}
+                {% endif %}
+            </p>
+            <p class="description">{{ education.description }}</p>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock  %}

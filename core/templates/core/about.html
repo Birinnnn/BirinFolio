@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Me{% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "core/about.css"%}">
+{% endblock %}
+
+{% block content %}
+    <div id="about-me">
+        <h1>{{ about_me.title }}</h1>
+        <p>{{ about_me.content|linebreaks }}</p>
+    </div>
+
+    <div id="social-links">
+        {% for link in social_links %}
+            <a href="{{ link.url }}">
+                <img src="{% static 'core/images/'|add:link.icon|add:'.png' %}" alt="{{ link.name }} icon">
+                {{ link.name }}
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

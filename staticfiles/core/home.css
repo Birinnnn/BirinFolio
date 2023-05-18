@@ -1,0 +1,85 @@
+#welcome {
+    width: 90%;
+    margin-bottom: 5%;
+    background-color: #f8f8f8;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.4);
+}
+  
+#welcome header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+}
+  
+#welcome img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+  
+#welcome h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+  
+#welcome p {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #555;
+}
+
+#latest-posts {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 60rem;
+    margin: -6rem auto 2rem auto;
+    box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.4);
+}
+  
+#latest-posts h2 {
+    text-align: center;
+}
+  
+#latest-posts ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+}
+  
+#latest-posts li {
+    flex: 1;
+}
+  
+#about {
+    text-align: center;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+  
+#about h2 {
+    font-size: 3rem;
+    color: #FFFF;
+}
+  
+#about p {
+    font-size: 1.5rem;
+    color: #8de5bf;
+}
+
+#info {
+    background-color: #f1dc25f8;
+    width: 90%;
+    padding: 0rem;
+    border-radius: 12px;
+    margin: 7% auto;
+    box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.4);
+}

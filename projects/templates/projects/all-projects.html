@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}All Projects{% endblock %}
+
+{% block css_files %}
+  <link rel="stylesheet" href="{% static 'projects/all-projects.css' %}">
+{% endblock %}
+
+{% block content %}
+  <section id="projects">
+    <h2>My Projects</h2>
+    <ul>
+        {% for project in projects %}
+            <li><a href="{% url "projects:project-detail-page" project.slug %}">{{ project.title }}</a></li>
+        {% empty %}
+          <li>No projects listed.</li>
+        {% endfor %}
+    </ul>
+  </section>
+{% endblock %}

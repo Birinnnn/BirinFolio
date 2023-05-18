@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title%}
+    HomePage 
+{% endblock %}
+
+{% block css_files%}
+<link rel="stylesheet" href="{% static "core/home.css"%}">
+<link rel="stylesheet" href="{% static "projects/project.css"%}">
+{% endblock css_files%}
+
+
+{% block content %}
+    <section id="welcome">
+            <header>
+                <img src="{{ profile.avatar.url }}" alt="That's mee">
+                <h2>Welcome!</h2>
+            </header>
+            <p>Here, I share my projects, experiences, and insights in the world of technology and computer science. Join me as I explore the latest trends, dive into exciting coding adventures, and share useful tips and tricks.</p>
+            <p>Whether you are a fellow developer, a tech enthusiast, or simply curious, I hope you find inspiration and useful information here. Feel free to browse through my projects, read my blog posts, and connect with me.</p>
+            <p>Thank you for visiting, and I hope you enjoy your time here!</p>
+    </section>
+
+    <section id="latest-posts">
+            <h2>My Latest Projects</h2>
+            <ul>
+                {% for project in projects %}
+                    {% include  "projects/includes/project.html" %}
+                {% endfor %}
+            </ul>
+    </section>
+
+    <section id="about">
+            <h2>What I do</h2>
+            <p>
+                I love programming, I love helping people and I enjoy sports!
+            </p>
+            <p>
+                My goal is to find an internship where I can learn a lot and be useful.
+            </p>
+    </section>
+    
+{% endblock %}

@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="{% static "app.css"%}">
+    {% block css_files %}{% endblock %}
+</head>
+<body>
+    <header id="main-navigation">
+        <h1><a href="{% url 'core:home'%}">BirinFolio</a></h1>
+        <nav>
+            <a href="{% url 'projects:projects-page'%}">Projects</a>
+            <a href="{% url 'skills:skills-page'%}">Skills</a>
+            <a href="{% url 'education:education-page'%}">Education</a>
+            <a href="{% url 'core:about'%}">About Me!</a>
+        </nav>
+    </header>
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,42 @@
+
+    #all-posts {
+    margin: 0;
+    width: 90%;
+    max-width: 60rem;
+  }
+  
+  #all-posts h2 {
+    font-size: 2rem;
+    color: #FFFF;
+    margin: 1rem 0;
+    text-align: center;
+    width: 100%;
+  }
+  
+  ul {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.5rem;
+  }
+  
+  .post img {
+    width: 7rem;
+    height: 7rem;
+  }
+  
+  .post a {
+    height: 22rem;
+    transform-origin: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    background-color: white;
+  }
+  li {
+    width: 90%;
+    border-radius: 12px;
+    padding: 4px 30px;
+    text-align: center;
+}

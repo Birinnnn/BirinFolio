@@ -1,0 +1,40 @@
+h1 {
+    text-align: center;
+    color: #FFFF;
+    margin-bottom: 20px;
+}
+
+.education-section {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.education-entry {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+
+.institution {
+    font-size: 1.5em;
+    color: #4d4949;
+    margin-bottom: 10px;
+}
+
+.degree {
+    font-size: 1.2em;
+    color: #6a6464;
+    margin-bottom: 10px;
+}
+
+.dates {
+    font-size: 1em;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: 1em;
+    color: #333;
+    text-align: justify;
+}

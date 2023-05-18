@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    {{ project.title }}
+{% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "projects/project-detail.css" %}">
+{% endblock %}
+
+{% block content %}
+    {% if messages %}
+    <div id="alert">
+        {% for message in messages %}
+            <h3>{{ message }}</h3>
+            <p>Please login to your account to like the projects.</p>
+            <a href="{% url 'core:login' %}">Login!</a>
+            <a href="{% url 'core:register' %}">Register!</a>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if comment_form.errors %}
+    <div id="alert">
+        <h3>Saving the comment failed!</h3>
+        <p>Please check the comment form below the post and fix your errors.</p>
+        <a href="#comment-form">Fix!</a>
+    </div>
+    {% endif %}
+
+    <div id="project-detail">
+        <h1>{{ project.title }}</h1>
+        <img src="{{ project.image.url }}" alt="{{ project.title }}">
+        <p>{{ project.description }}</p>
+        {% if project.url %}
+            <a href="{{ project.url }}" target="_blank">View Project</a>
+        {% endif %}
+        <h3>Skills Used:</h3>
+        <ul>
+            {% for skill in project.skills.all %}
+                <li>{{ skill.name }}</li>
+            {% endfor %}
+        </ul>
+        
+        <div id="like">
+            <form action="{% url 'projects:project-detail-page' project.slug %}", method="POST">
+                {% csrf_token %}
+                <input type="hidden" value="{{ project.id }}" name="like">
+                {% if liked %}
+                <button><img src="{% static '/images/like.png' %}" alt="Like"></button>
+                {% else %}
+                <button><img src="{% static '/images/dislike.png' %}" alt="Dislike"></button>
+                {% endif %}
+            </form>
+            <label>{{project.likes.count}}</label>
+        </div>
+    </div>
+
+    <section id="comments">
+        <ul>
+            {% for comment in comments %}
+                <li>
+                    <h2>{{comment.user.username}}</h2>
+                    <p>{{comment.text|linebreaks}}</p>
+                </li>
+            {% empty %}
+                <li>
+                    <h2>No Comments Yet!</h2>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section id="comment-form">
+        <h2>Enter Your Comment</h2>
+        {% if request.user.is_authenticated %}
+            <form action="{% url 'projects:project-detail-page' project.slug %}" method="POST">
+                {% csrf_token %}
+                {% for form_field in comment_form %}
+                    <div class="form-control {% if form_field.errors %}invalid{% endif %}">
+                        {{ form_field.label_tag }}
+                        {{ form_field }}
+                        {% if form_field.errors %}
+                            <span class="error">{{ form_field.errors }}</span>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <button type="submit" name="submit_comment">Save Comment</button>
+            </form>
+        {% else %}
+            <p>Please <a href="{% url 'core:login' %}">log in</a> to submit a comment.</p>
+        {% endif %}
+    </section>
+
+{% endblock %}

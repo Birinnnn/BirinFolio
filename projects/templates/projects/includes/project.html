@@ -1,0 +1,18 @@
+
+<li class="project">
+    <a href="{{ project.url }}">
+        <div class="project-image">
+            <img src="{{ project.image.url }}" alt="{{ project.title }}">
+        </div>
+        <div class="project-details">
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.description }}</p>
+            <ul class="project-skills">
+                {% for skill in project.skills.all %}
+                    <li>{{ skill.name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </a>
+</li>
+

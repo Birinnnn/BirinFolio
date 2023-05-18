@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title%}
+    Skills
+{% endblock %}
+
+{% block  css_files %}
+<link rel="stylesheet" href="{% static "skills/skills.css" %}">
+{% endblock  %}
+
+
+{% block content %}
+<section id="all-skills">
+    <h1>My Programming Skills</h1>
+    <ul name="category">
+        {% for category in categories %}
+        <h2>{{ category.name }}</h2>
+        <ul name="skill">
+            {% for skill in category.skills.all %}
+                <li>
+                    <img id="skill-image" src="{{ skill.image.url }}" alt="{{skill.name}}">
+                    {{ skill.name }}
+                </li>
+            {% endfor %}
+        </ul>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}

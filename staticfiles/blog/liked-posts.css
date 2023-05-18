@@ -1,0 +1,40 @@
+#main-navigation {
+    background-color: #390281;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+#liked-posts {
+    margin: 3rem auto;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    background-color: white;
+    width: 90%;
+    max-width: 30rem;
+}
+
+#liked-posts ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#liked-posts li{
+    margin: 1rem 0;
+    border: 1px solid #ccc;
+}
+
+#liked-posts a{
+    display: block;
+    width: 100%;
+    color: #390281;
+    text-decoration: none;
+    padding: 1rem;
+    font-weight: bold;
+}
+
+#liked-posts a:hover,
+#liked-posts a:active{
+    background-color: #390281;
+    color: white;
+}
