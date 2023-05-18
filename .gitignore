@@ -1,2 +1,4 @@
 "django_my_personal_website/" 
 "static/"
+"uploads/"
+"staticfiles/"

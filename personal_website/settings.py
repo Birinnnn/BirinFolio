@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'projects',
     'education',
     'skills',
+    'storages',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -143,3 +144,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = BASE_DIR / 'uploads'
 MEDIA_URL = '/uploads/'
+
+AWS_STORAGE_BUCKET_NAME = 'myportfiolio'
+AWS_S3_REGION_NAME = getenv('AWS_S3_REGION_NAME')
+AWS_ACCESS_KEY_ID = getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = getenv('AWS_SECRET_ACCESS_KEY')
+
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+
+STATICFILES_LOCATION = 'static'
+MEDIAFILES_LOCATION = 'media'
+
+STATICFILES_STORAGE = 'custom_storages.StaticFileStorage'
+DEFAULT_FILE_STORAGE = 'custom_storages.MediaFileStorage'
