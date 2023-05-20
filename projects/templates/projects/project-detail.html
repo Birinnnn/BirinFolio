@@ -75,7 +75,7 @@
     <section id="comment-form">
         <h2>Enter Your Comment</h2>
         {% if request.user.is_authenticated %}
-        <p>Leave a comment as: {{ request.user.username }}</p>
+            <h3> Your Username: {{ request.user.get_username }}</h3>
             <form action="{% url 'projects:project-detail-page' project.slug %}" method="POST">
                 {% csrf_token %}
                 {% for form_field in comment_form %}
