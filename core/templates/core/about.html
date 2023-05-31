@@ -4,27 +4,40 @@
 {% block title %}About Me{% endblock %}
 
 {% block css_files %}
-    <link rel="stylesheet" href="{% static "core/about.css"%}">
 {% endblock %}
 
 {% block content %}
-    <div id="about-me" class="my-5">
-        <h1>{{ about_me.title }}</h1>
-        <p>{{ about_me.content|linebreaks }}</p>
-    </div>
+    <section id="about-me" class="my-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <h1>{{ about_me.title }}</h1>
+                    <p class="text-justify">{{ about_me.content|linebreaksbr }}</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div id="social-links" class="my-5 text-center">
-        {% for link in social_links %}
-            <a class="btn btn-primary m-2" href="{{ link.url }}">
-                <img src="{% static 'core/images/'|add:link.icon|add:'.png' %}" alt="{{ link.name }} icon">
-                {{ link.name }}
-            </a>
-        {% endfor %}
-        {% if cv %}
-            <a class="btn line-btn-dark btn-icon btn-radius btn-primary m-2" href="{{ cv.url }}" download title="Anil_Ilaga_CV">
-                <i class="bi bi-file-person"></i>
-                <span>My CV</span>
-            </a>
-        {% endif %}
-    </div>
+    <section id="social-links" class="my-5">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                {% for link in social_links %}
+                    <div class="col-auto mb-3">
+                        <a class="btn btn-primary" href="{{ link.url }}" title="{{ link.name }}">
+                            <img class="img-fluid" src="{% static 'core/images/'|add:link.icon|add:'.png' %}" alt="{{ link.name }} icon" style="width:25px;">
+                            {{ link.name }}
+                        </a>
+                    </div>
+                {% endfor %}
+                {% if cv %}
+                    <div class="col-auto mb-3">
+                        <a class="btn btn-primary" href="{{ cv.url }}" download title="Anil_Ilaga_CV">
+                            <i class="bi bi-file-person"></i>
+                            <span>My CV</span>
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
 {% endblock %}

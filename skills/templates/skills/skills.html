@@ -17,7 +17,7 @@
         <h2 class="mb-3">{{ category.name }}</h2>
         <div class="row">
             {% for skill in category.skills.all %}
-            <div class="col-md-2 mb-3">
+            <div class="col-12 col-md-4 mb-3">
                 <div class="card h-100">
                     <div class="card-body">
                     <img class="card-img-top" src="{{ skill.image.url }}" alt="{{skill.name}}" style="width:50px;">

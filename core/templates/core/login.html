@@ -4,16 +4,28 @@
 {% block title %}Login{% endblock title %}
 
 {% block css_files%}
-<link rel="stylesheet" href="{% static "core/login.css"%}">
 {% endblock css_files%}
 
 
 {% block content %}
-<form method="POST" novalidate>
-	{% csrf_token %}
-	<h2>Welcome back!</h2>
-	{{form.as_p}}
-	<input type="submit" value="Login" />
-	<p>Don't have an account? <a href="{%url 'core:register' %}">Register</a></p>
+<div class="d-flex justify-content-center vh-20 mt-5">
+<form method="POST" class="needs-validation" novalidate>
+    {% csrf_token %}
+    <h2 class="mb-3">Welcome back!</h2>
+
+    {% for field in form %}
+    <div class="mb-3">
+        <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+        <input type="{{ field.field.widget.input_type }}" class="form-control" id="{{ field.id_for_label }}" name="{{ field.name }}" required>
+        <div class="invalid-feedback">
+            {{ field.errors }}
+        </div>
+    </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary mb-3">Login</button>
+
+    <p class="mb-3">Don't have an account? <a href="{% url 'core:register' %}">Register</a></p>
 </form>
+</div>
 {% endblock content%}
