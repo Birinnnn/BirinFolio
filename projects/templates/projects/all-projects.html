@@ -4,18 +4,25 @@
 {% block title %}All Projects{% endblock %}
 
 {% block css_files %}
-  <link rel="stylesheet" href="{% static 'projects/all-projects.css' %}">
 {% endblock %}
 
 {% block content %}
-  <section id="projects">
-    <h2>My Projects</h2>
-    <ul>
-        {% for project in projects %}
-            <li><a href="{% url "projects:project-detail-page" project.slug %}">{{ project.title }}</a></li>
-        {% empty %}
-          <li>No projects listed.</li>
-        {% endfor %}
-    </ul>
-  </section>
+  <h2>My Projects</h2>
+  <div class="row">
+      {% for project in projects %}
+      <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+          <div class="card">
+              <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+              <div class="card-body">
+                  <h5 class="card-title">{{ project.title }}</h5>
+                  <a href="{% url "projects:project-detail-page" project.slug %}" class="btn btn-primary">Read More</a>
+              </div>
+          </div>
+      </div>
+      {% empty %}
+      <div class="col">
+          <p>No projects listed.</p>
+      </div>
+      {% endfor %}
+  </div>
 {% endblock %}

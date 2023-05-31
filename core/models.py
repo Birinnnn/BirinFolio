@@ -9,6 +9,7 @@ class Profile(models.Model):
     bio = models.TextField(max_length=500, blank=True)
     avatar = models.ImageField(
         upload_to="avatars", default="avatars/default.png")
+    cv = models.FileField(upload_to="cvs", blank=True)
     first_name = models.CharField(max_length=50, blank=True)
     last_name = models.CharField(max_length=50, blank=True)
 

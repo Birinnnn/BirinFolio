@@ -11,20 +11,22 @@
 
 
 {% block content %}
-<section id="all-skills">
-    <h1>My Programming Skills</h1>
-    <ul name="category">
-        {% for category in categories %}
-        <h2>{{ category.name }}</h2>
-        <ul name="skill">
+    <h1 class="text-center mb-4">My Programming Skills</h1>
+    {% for category in categories %}
+    <div class="mb-4">
+        <h2 class="mb-3">{{ category.name }}</h2>
+        <div class="row">
             {% for skill in category.skills.all %}
-                <li>
-                    <img id="skill-image" src="{{ skill.image.url }}" alt="{{skill.name}}">
-                    {{ skill.name }}
-                </li>
+            <div class="col-md-2 mb-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                    <img class="card-img-top" src="{{ skill.image.url }}" alt="{{skill.name}}" style="width:50px;">
+                    <h5 class="card-title">{{ skill.name }}</h5>
+                    </div>
+                </div>
+            </div>
             {% endfor %}
-        </ul>
-        {% endfor %}
-    </ul>
-</section>
+        </div>
+    </div>
+    {% endfor %}
 {% endblock %}

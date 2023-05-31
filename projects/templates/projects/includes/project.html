@@ -1,18 +1,19 @@
 
-<li class="project">
-    <a href="{{ project.url }}">
-        <div class="project-image">
-            <img src="{{ project.image.url }}" alt="{{ project.title }}">
+<li class="list-group-item">
+    
+        <div class="project-image me-3">
+            <a href="{{ project.url }}" class="d-flex align-items-center">
+                <img src="{{ project.image.url }}" alt="{{ project.title }}" class="img-fluid">
+            </a>    
         </div>
         <div class="project-details">
             <h3>{{ project.title }}</h3>
-            <p>{{ project.description }}</p>
-            <ul class="project-skills">
+            <ul class="list-group mt-2">
                 {% for skill in project.skills.all %}
-                    <li>{{ skill.name }}</li>
+                    <li class="list-group-item">{{ skill.name }}</li>
                 {% endfor %}
             </ul>
         </div>
-    </a>
+    
 </li>
 

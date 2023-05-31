@@ -5,40 +5,48 @@
     HomePage 
 {% endblock %}
 
-{% block css_files%}
-<link rel="stylesheet" href="{% static "core/home.css"%}">
-<link rel="stylesheet" href="{% static "projects/project.css"%}">
-{% endblock css_files%}
-
 
 {% block content %}
-    <section id="welcome">
-            <header>
-                <img src="{{ profile.avatar.url }}" alt="That's mee">
-                <h2>Welcome!</h2>
-            </header>
-            <p>Here, I share my projects, experiences, and insights in the world of technology and computer science. Join me as I explore the latest trends, dive into exciting coding adventures, and share useful tips and tricks.</p>
-            <p>Whether you are a fellow developer, a tech enthusiast, or simply curious, I hope you find inspiration and useful information here. Feel free to browse through my projects and connect with me.</p>
-            <p>Thank you for visiting, and I hope you enjoy your time here!</p>
+    <section id="welcome" class="my-5 text-center">
+            <div class="col-12 text-center">
+                <img class="rounded-circle mx-auto d-block" src="{{ profile.avatar.url }}" alt="That's me" style="width:150px;">
+                <h2 class="mt-3">Welcome!</h2>
+                <p class="lead">Here, I share my projects, experiences, and insights in the world of technology and computer science. Join me as I explore the latest trends, dive into exciting coding adventures, and share useful tips and tricks.</p>
+                <p>Whether you are a fellow developer, a tech enthusiast, or simply curious, I hope you find inspiration and useful information here. Feel free to browse through my projects and connect with me.</p>
+                <p>Thank you for visiting, and I hope you enjoy your time here!</p>
+            </div>
     </section>
 
-    <section id="latest-posts">
-            <h2>My Latest Projects</h2>
-            <ul>
-                {% for project in projects %}
-                    {% include  "projects/includes/project.html" %}
-                {% endfor %}
-            </ul>
+    <section id="latest-posts" class="my-5">
+        <h2 class="text-center">My Latest Projects</h2>
+        <div class="row">
+            {% for project in projects %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-90">
+                        <a href="{{ project.url }}">
+                            <img src="{{ project.image.url }}" alt="{{ project.title }}" class="card-img-top img-fluid">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ project.title }}</h5>
+                            <ul class="list-group list-group-flush">
+                                {% for skill in project.skills.all %}
+                                    <li class="list-group-item">{{ skill }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </section>
 
-    <section id="about">
-            <h2>What I do</h2>
-            <p>
-                I love programming and I enjoy sports!
-            </p>
-            <p>
-                My current goal is to find an internship where I can learn a lot and be useful.
-            </p>
+    <section id="about" class="my-5 text-center">
+        <h2>What I do</h2>
+        <p class="lead">
+            I love programming and I enjoy sports!
+        </p>
+        <p>
+            My current goal is to find an internship where I can learn a lot and be useful.
+        </p>
     </section>
-    
 {% endblock %}

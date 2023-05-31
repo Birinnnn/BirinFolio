@@ -66,6 +66,8 @@ class HomeView(SuccessMessageMixin, View):
     
 class AboutView(SuccessMessageMixin, View):
     def get(self, request):
-        about_me = User.objects.get(username="anil").profile.about_me
+        profile = User.objects.get(username="anil").profile
+        about_me = profile.about_me
         social_links = about_me.links.all()
-        return render(request, "core/about.html", {"about_me": about_me, "social_links": social_links})
+        cv = profile.cv
+        return render(request, "core/about.html", {"about_me": about_me, "social_links": social_links, "cv": cv})

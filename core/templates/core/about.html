@@ -8,17 +8,23 @@
 {% endblock %}
 
 {% block content %}
-    <div id="about-me">
+    <div id="about-me" class="my-5">
         <h1>{{ about_me.title }}</h1>
         <p>{{ about_me.content|linebreaks }}</p>
     </div>
 
-    <div id="social-links">
+    <div id="social-links" class="my-5 text-center">
         {% for link in social_links %}
-            <a href="{{ link.url }}">
+            <a class="btn btn-primary m-2" href="{{ link.url }}">
                 <img src="{% static 'core/images/'|add:link.icon|add:'.png' %}" alt="{{ link.name }} icon">
                 {{ link.name }}
             </a>
         {% endfor %}
+        {% if cv %}
+            <a class="btn line-btn-dark btn-icon btn-radius btn-primary m-2" href="{{ cv.url }}" download title="Anil_Ilaga_CV">
+                <i class="bi bi-file-person"></i>
+                <span>My CV</span>
+            </a>
+        {% endif %}
     </div>
 {% endblock %}
