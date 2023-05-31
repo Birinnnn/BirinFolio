@@ -60,7 +60,7 @@ class RegisterView(SuccessMessageMixin, FormView):
 class HomeView(SuccessMessageMixin, View):
     def get(self, request):
         profile = User.objects.get(username="anil").profile
-        project = profile.projects.all()[:3]
+        project = profile.projects.all().order_by("-id")[:3]
         return render(request, "core/home.html", {"profile": profile,
                                                    "projects": project})
     
