@@ -23,7 +23,4 @@ This portfolio website aims to demonstrate my proficiency as a coder, showcase m
 ## Deployed Website:
 www.anilaga.rocks
 
-GitHub Repository:
-https://github.com/Birinnnn/BirinFolio
-
 Feel free to explore my portfolio website and get in touch if you have any questions or feedback. Thank you for your interest!
