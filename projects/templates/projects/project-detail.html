@@ -6,17 +6,20 @@
 {% endblock %}
 
 {% block css_files %}
-    <link rel="stylesheet" href="{% static "projects/project-detail.css" %}">
 {% endblock %}
 
 {% block content %}
     {% if messages %}
     <div class="alert alert-warning">
         {% for message in messages %}
-            <h4>{{ message }}</h4>
-            <p>Please login to your account to like the projects.</p>
-            <a href="{% url 'core:login' %}" class="btn btn-primary">Login!</a>
-            <a href="{% url 'core:register' %}" class="btn btn-secondary">Register!</a>
+            <div class="mb-2">
+                <h4>{{ message }}</h4>
+                <p>Please login to your account to like the projects.</p>
+                <div class="d-flex">
+                    <a href="{% url 'core:login' %}" class="btn btn-primary me-2">Login!</a>
+                    <a href="{% url 'core:register' %}" class="btn btn-secondary">Register!</a>
+                </div>
+            </div>
         {% endfor %}
     </div>
     {% endif %}
@@ -29,32 +32,36 @@
     </div>
     {% endif %}
 
-    <div id="project-detail" class="my-5">
-    <h1>{{ project.title }}</h1>
-    <img class="img-fluid" src="{{ project.image.url }}" alt="{{ project.title }}">
-    <p>{{ project.description }}</p>
-    {% if project.url %}
-        <a href="{{ project.url }}" target="_blank" class="btn btn-primary">View Project</a>
-    {% endif %}
-    <h3>Skills Used:</h3>
-    <ul class="list-group">
-        {% for skill in project.skills.all %}
-            <li class="list-group-item">{{ skill.name }}</li>
-        {% endfor %}
-    </ul>
-
-    <div id="like" class="my-3">
-        <form action="{% url 'projects:project-detail-page' project.slug %}" method="POST">
-            {% csrf_token %}
-            <input type="hidden" value="{{ project.id }}" name="like">
-            {% if liked %}
-            <button class="btn btn-primary"><img src="{% static 'images/like.png' %}" alt="Like"></button>
-            {% else %}
-            <button class="btn btn-secondary"><img src="{% static 'images/dislike.png' %}" alt="Dislike"></button>
+    <div id="project-detail" class="card my-5">
+        <div class="card-body">
+            <h1>{{ project.title }}</h1>
+            <img class="img-fluid" src="{{ project.image.url }}" alt="{{ project.title }}">
+            <p>{{ project.description }}</p>
+            {% if project.url %}
+                <a href="{{ project.url }}" target="_blank" class="btn btn-primary">View Project</a>
             {% endif %}
-        </form>
-        <label>{{project.likes.count}}</label>
-    </div>
+            <h3>Skills Used:</h3>
+            <ul class="list-group">
+                {% for skill in project.skills.all %}
+                    <li class="list-group-item">{{ skill.name }}</li>
+                {% endfor %}
+            </ul>
+
+            <div id="like" class="my-3">
+                <form action="{% url 'projects:project-detail-page' project.slug %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{ project.id }}" name="like">
+                    <button class="btn btn-primary">
+                    {% if liked %}
+                    <img src="{% static 'images/like.png' %}" alt="Like" style="width:35px;">
+                    {% else %}
+                    <img src="{% static 'images/dislike.png' %}" alt="Dislike" style="width:35px;">
+                    {% endif %}
+                    <span class="ms-2">{{project.likes.count}}</span>
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
 
     <section id="comments" class="my-5">
@@ -73,25 +80,25 @@
     </section>
 
     <section id="comment-form" class="my-5">
-    <h2>Enter Your Comment</h2>
-    {% if request.user.is_authenticated %}
-        <h3> Your Username: {{ request.user.get_username }}</h3>
-        <form action="{% url 'projects:project-detail-page' project.slug %}" method="POST">
-            {% csrf_token %}
-            {% for form_field in comment_form %}
-                <div class="mb-3 {% if form_field.errors %}is-invalid{% endif %}">
-                    {{ form_field.label_tag }}
-                    {{ form_field }}
-                    {% if form_field.errors %}
-                        <div class="invalid-feedback">{{ form_field.errors }}</div>
-                    {% endif %}
-                </div>
-            {% endfor %}
-            <button type="submit" name="submit_comment" class="btn btn-primary">Save Comment</button>
-        </form>
-    {% else %}
+        <h2>Enter Your Comment</h2>
+        {% if request.user.is_authenticated %}
+            <h3> Your Username: {{ request.user.get_username }}</h3>
+            <form action="{% url 'projects:project-detail-page' project.slug %}" method="POST">
+                {% csrf_token %}
+                {% for form_field in comment_form %}
+                    <div class="mb-3">
+                        {{ form_field.label_tag }}
+                        {{ form_field }}
+                        {% if form_field.errors %}
+                            <div class="alert alert-danger">{{ form_field.errors.as_text }}</div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <button type="submit" name="submit_comment" class="btn btn-primary">Save Comment</button>
+            </form>
+        {% else %}
         <p>Please <a href="{% url 'core:login' %}">log in</a> to submit a comment.</p>
-    {% endif %}
+        {% endif %}
     </section>
 
 {% endblock %}
